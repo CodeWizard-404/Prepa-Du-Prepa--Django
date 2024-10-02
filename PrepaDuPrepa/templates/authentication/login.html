@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+        transition: all 0.3s ease;
+        font-family: 'Arial', sans-serif;
+    }
+    .form-signin {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: #333;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    .form-signin label {
+        font-weight: bold;
+        color: #ccc;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    .form-signin input {
+        margin-bottom: 20px; 
+        border-radius: 5px;
+        background-color: #444;
+        color: #fff;
+        border: 1px solid #555;
+        padding: 10px;
+        transition: all 0.3s ease;
+    }
+    .form-signin input:focus {
+        border-color: #007bff;
+        outline: none;
+        background-color: #555;
+    }
+    .form-signin .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        width: 100%;
+        transition: all 0.3s ease;
+        padding: 12px;
+    }
+    .form-signin .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    .form-signin .alert-danger {
+        margin-top: 15px;
+        background-color: #440000; 
+        color: #ffdddd;
+        padding: 10px; 
+        border-radius: 5px;
+    }
+    .eye-icon {
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        color: #ccc;
+    }
+    .eye-icon:hover {
+        color: #fff; /* Eye icon color on hover */
+    }
+</style>
+
+<div style="margin-top: 30px;">
+    <form method="post" class="form-signin">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
+        
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="id_username">Username</label>
+            <input type="text" name="username" id="id_username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="id_password">Password</label>
+            <div class="position-relative">
+                <input type="password" name="password" id="id_password" class="form-control" required>
+                <i class="eye-icon fas fa-eye" id="togglePassword"></i>
+            </div>
+        </div>
+
+        <button class="btn btn-lg btn-primary" type="submit">Login</button>
+        <hr style="border:none;">
+
+        <div class="text-center mb-3 pt-6">
+            <hr class="w-25 bg-secondary float-left">
+            <span class="px-2 text-muted">or</span>
+            <hr class="w-25 bg-secondary float-right">
+        </div>
+        <a href="{% url 'register' %}" class="btn btn-lg btn-secondary">Sign Up</a>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#id_password');
+        togglePassword.addEventListener('click', function(e) {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Custom CSS -->
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+    }
+
+    .section-title {
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        color: #007bff;
+    }
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        background-color: #383838;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        margin-right: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .card:hover {
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .card img {
+        border-radius: 20px 20px 0 0;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 40px;
+    }
+
+    .btn {
+        border-radius: 20px;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-light {
+        background-color: #007bff;
+        color: white;
+        border: 2px solid #007bff;
+    }
+
+    .btn-light:hover {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .text-white {
+        color: white;
+    }
+
+    .section-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-in-up {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+    .card-body {
+        padding: 20px;
+        position: relative; 
+    }
+    
+    .card .btn {
+        border-radius: 20px;
+        padding: 5px 20px;
+        transition: all 0.3s ease;
+        position: absolute; 
+        bottom: 20px; 
+        left: 20px; 
+    }
+        
+</style>
+
+
+
+<div class="row mb-5">
+    <div class="col-lg-12">
+        <h2 class="text-white text-center section-title fade-in-up">Section</h2>
+        <div class="section-slider d-flex overflow-auto custom-scrollbar">
+            <div class="card-container d-flex">
+                {% for course in courses %}
+
+                    <div class="card mr-3 fade-in-up" style="width: 18rem;">
+                        <img src="{% static 'images/section.png' %}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ course.title }}</h5>
+                            <p class="card-text"><b>description: {{ course.description }}</b></p>
+                            <p class="card-text">level:{{ course.level }}</p>
+                            <br>
+                            <a href="{% url 'course_show' %}" class="btn btn-light">Explore</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock content %}

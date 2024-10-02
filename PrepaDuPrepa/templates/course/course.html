@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Course index{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4 mb-4 text-white">Course index</h1>
+
+    <div class="table-responsive">
+        <table class="table text-white table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Subject</th>  
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>{{ course.courseId }}</td>
+                    <td>{{ course.title }}</td>
+                    <td>{{ course.description }}</td>
+                    <td>{{ course.level }}</td>
+                    <td>{% for subject in course.subject_set.all %}{{ subject.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                    <td>
+                        <a href="{% url 'course_show' course.courseId %}" class="btn btn-sm btn-info">Show</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No records found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
