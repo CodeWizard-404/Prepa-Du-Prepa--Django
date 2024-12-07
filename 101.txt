@@ -16,7 +16,7 @@ pip install django-suit
 
 django-admin startproject ProjectDjango
 
-cd ProjectDjango
+cd PrepaDuPrepa
 
 
 python manage.py collectstatic
