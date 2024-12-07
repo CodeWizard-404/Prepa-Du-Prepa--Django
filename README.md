@@ -2,6 +2,7 @@
 
 **Prépa du Prépa** is a web platform designed to provide essential resources and tools for engineering students preparing for competitive exams. Built with the Django framework, this project aims to create an efficient and user-friendly interface for accessing preparatory materials, sharing knowledge, and enhancing the learning experience.
 
+
 ## Features
 
 - **User Authentication**: Secure login and registration system for users.
@@ -22,13 +23,13 @@
 Here are some screenshots of the platform:
 
 1. **Home Page**  
-   ![Home Page Screenshot](readmFiles\home.png)
+   ![Home Page Screenshot](readmFiles/home.png)
 
 2. **Authentification**  
-   ![User Dashboard Screenshot](readmFiles\auth.png)
+   ![User Dashboard Screenshot](readmFiles/auth.png)
 
 3. **Profile Page**  
-   ![Resource Page Screenshot](readmFiles\profile.png)
+   ![Resource Page Screenshot](readmFiles/profile.png)
 
 
 ## Installation
